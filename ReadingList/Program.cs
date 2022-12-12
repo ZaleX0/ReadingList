@@ -4,7 +4,8 @@ using ReadingList.Data.Interfaces;
 using ReadingList.Data.Repositories;
 using ReadingList.Data.UnitsOfWork;
 using ReadingList.Services;
-using System.Reflection;
+using ReadingList.Services.Interfaces;
+using ReadingList.Services.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,15 +16,18 @@ builder.Services.AddDbContext<ReadingListDbContext>(options => {
 });
 
 builder.Services.AddAutoMapper(typeof(ReadingList.Services.MappingProfiles.ReadingListMappingProfile).Assembly);
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IBookPriorityRepository, BookPriorityRepository>();
+builder.Services.AddScoped<IBookReadRepository, BookReadRepository>();
 builder.Services.AddScoped<IReadingListUnitOfWork, ReadingListUnitOfWork>();
 
-builder.Services.AddScoped<BookService>();
-builder.Services.AddScoped<AuthorService>();
-builder.Services.AddScoped<BookPriorityService>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IBookService, BookService>(); 
+builder.Services.AddScoped<IBookReadService, BookReadService>(); 
+builder.Services.AddScoped<IBookPriorityService, BookPriorityService>();
 builder.Services.AddScoped<AuthorAndBookSeeder>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -44,6 +48,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 

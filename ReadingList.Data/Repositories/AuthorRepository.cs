@@ -21,13 +21,16 @@ public class AuthorRepository : IAuthorRepository
 
 	public async Task<IEnumerable<Author>> GetAllAsync()
 	{
-		return await _context.Authors.ToListAsync();
+		return await _context.Authors
+            .Include(a => a.Books)
+            .ToListAsync();
 	}
 
 	public async Task<Author?> GetByIdAsync(int id)
 	{
 		return await _context.Authors
-			.FirstOrDefaultAsync(a => a.Id == id);
+            .Include(a => a.Books)
+            .FirstOrDefaultAsync(a => a.Id == id);
 	}
 
 	public void Remove(Author author)

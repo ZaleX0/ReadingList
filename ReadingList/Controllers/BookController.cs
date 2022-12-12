@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ReadingList.Data.Entities;
-using ReadingList.Services;
+using ReadingList.Services.Interfaces;
 using ReadingList.Services.Models;
 
 namespace ReadingList.Controllers;
@@ -9,9 +8,9 @@ namespace ReadingList.Controllers;
 [Route("api/[controller]")]
 public class BookController : ControllerBase
 {
-    private readonly BookService _service;
+    private readonly IBookService _service;
 
-    public BookController(BookService service)
+    public BookController(IBookService service)
     {
         _service = service;
     }

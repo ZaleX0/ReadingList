@@ -31,9 +31,9 @@ public class AuthorAndBookSeeder
     {
         return new List<Author>
         {
-            new Author { FullName = "Author One" },
-            new Author { FullName = "Author Two" },
-            new Author { FullName = "Author Three" },
+            new Author { FullName = "George R.R. Martin" },
+            new Author { FullName = "John R.R. Tolkien" },
+            new Author { FullName = "Terry Pratchett" },
         };
     }
 
@@ -41,11 +41,12 @@ public class AuthorAndBookSeeder
     {
         return new List<Book>
         {
-            new Book { AuthorId = 1, Title = "Title One" },
-            new Book { AuthorId = 2, Title = "Title Two" },
-            new Book { AuthorId = 3, Title = "Title Three" },
-            new Book { AuthorId = 1, Title = "Title Four" },
-            new Book { AuthorId = 2, Title = "Title Five" },
+            new Book { AuthorId = 1, Title = "Game of Thrones" },
+            new Book { AuthorId = 1, Title = "A Dream of Spring" },
+            new Book { AuthorId = 2, Title = "The Lord of the Rings" },
+            new Book { AuthorId = 2, Title = "The Silmarillion" },
+            new Book { AuthorId = 2, Title = "The Hobbit" },
+            new Book { AuthorId = 3, Title = "The Colour of Magic" },
         };
     }
 }

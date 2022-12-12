@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReadingList.Data;
 
@@ -10,9 +11,11 @@ using ReadingList.Data;
 namespace ReadingList.Data.Migrations
 {
     [DbContext(typeof(ReadingListDbContext))]
-    partial class ReadingListDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221202140705_RemoveDateReadCol")]
+    partial class RemoveDateReadCol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

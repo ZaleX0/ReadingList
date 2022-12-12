@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReadingList.Services;
+using ReadingList.Services.Interfaces;
 using ReadingList.Services.Models;
 
 namespace ReadingList.Controllers;
@@ -8,9 +9,9 @@ namespace ReadingList.Controllers;
 [Route("api/[controller]")]
 public class AuthorController : ControllerBase
 {
-    private readonly AuthorService _service;
+    private readonly IAuthorService _service;
 
-    public AuthorController(AuthorService service)
+    public AuthorController(IAuthorService service)
     {
         _service = service;
     }
@@ -22,7 +23,7 @@ public class AuthorController : ControllerBase
         return Ok(authors);
     }
 
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
         var author = await _service.GetByIdAsync(id);
@@ -36,7 +37,7 @@ public class AuthorController : ControllerBase
         return Created($"api/author/{id}", null);
     }
 
-    [HttpPut("id")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update(UpdateAuthorDto dto, int id)
     {
         dto.Id = id;
@@ -44,7 +45,7 @@ public class AuthorController : ControllerBase
         return Ok();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
         await _service.DeleteAsync(id);
