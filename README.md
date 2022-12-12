@@ -14,11 +14,11 @@ Right click on the `ReadingList` project in Solution Explorer and select `Set as
   }
 ```
 
-1. Initiate database
+2. Initiate database
     - Choose `ReadingList` as Default project in Package Manager Console.
         ![ReadingList default project](setDefaultProject.png)
     - Run `update-database` command.
-    > Sample data would be inserted into database automatically by using the [seeder]()
+> Sample data would be inserted into database automatically by using the [seeder]()
 
 ### You can start the API now
 
