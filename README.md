@@ -9,7 +9,7 @@ This project allows user to add books and authors to database and create own Rea
 
 # Configuration
 ## 1. Startup project
-Right click on the `ReadingList` project in Solution Explorer and select `Set as Startup Projects`
+Right click on the `ReadingList` project in Solution Explorer and select `Set as Startup Project`
     ![Set ReadingList as startup project](setAsStartupProject.png)
 
 ## 2. Database
@@ -25,7 +25,7 @@ Right click on the `ReadingList` project in Solution Explorer and select `Set as
     - Choose `ReadingList` as Default project in Package Manager Console.
         ![ReadingList default project](setDefaultProject.png)
     - Run `update-database` command.
-> Sample data would be inserted into database automatically by using the [AuthorAndBookSeeder](ReadingList.Services\AuthorAndBookSeeder.cs)
+> Sample data would be inserted into database automatically by using the [AuthorAndBookSeeder](ReadingList.Services/AuthorAndBookSeeder.cs)
 
 ### You can start the API now
 
@@ -35,7 +35,7 @@ The way I open client project is to open `ReadingList.Client` in Visual Studio C
     - `npm install`
     - `npm start`
 >**Note**
-> There might be an error saying [Plugin "react" was conflicted between "package.json » eslint-config-react-app »](https://stackoverflow.com/questions/70377211/error-when-deploying-react-app-and-it-keeps-sayings-plugin-react-was-confli)
+> There might be an error saying [Plugin "react" was conflicted between "package.json Â» eslint-config-react-app Â»](https://stackoverflow.com/questions/70377211/error-when-deploying-react-app-and-it-keeps-sayings-plugin-react-was-confli)
 
 # Architecture
 - Solution contains four layers
@@ -43,10 +43,10 @@ The way I open client project is to open `ReadingList.Client` in Visual Studio C
     [Data](ReadingList.Data),
     [Services](ReadingList.Services),
     [Client](ReadingList.Client))
-- I used Unit of Work pattern to inject all repositories into single [class](ReadingList.Data/UnitsOfWork/ReadingListUnitOfWork.cs)
+- I used Unit of Work pattern to inject all repositories into a single [class](ReadingList.Data/UnitsOfWork/ReadingListUnitOfWork.cs)
 - [Controllers](ReadingList/Controllers) are used for handling requests from the client.
 - [Services](ReadingList.Services) handle all necessary logic like mapping DTO models using AutoMapper and calling repositories.
-- [Repositories](ReadingList.Data/Repositories) handle database operations, each repository corresponds to a table from database.
+- [Repositories](ReadingList.Data/Repositories) handle database operations, each repository corresponds to its own table from database.
 
 # Database
 ![Database Schema](dbSchema.png)
